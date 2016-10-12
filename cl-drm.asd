@@ -3,7 +3,7 @@
 (asdf:defsystem #:cl-drm
   :description "Common Lisp bindings for libdrm"
   :author "Malcolm Still"
-  :license "Specify license here"
+  :license "BSD3"
   :depends-on (#:cffi)
   :serial t
   :components ((:file "package")
