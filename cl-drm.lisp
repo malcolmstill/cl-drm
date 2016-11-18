@@ -1,5 +1,4 @@
 
-
 (in-package :drm)
 
 (define-foreign-library libdrm
@@ -186,3 +185,21 @@
 (defcfun ("drmModeRmFB" mode-remove-framebuffer) :int
   (fd :int)
   (buffer-id :uint32))
+
+(defcfun ("drmModePageFlip" mode-page-flip) :int
+  (fd :int)
+  (crtc-id :uint32)
+  (fb-id :uint32)
+  (flags :uint32)
+  (user-data :pointer))
+
+;; void (*vblank_handler)(int fd, unsigned int sequence, unsigned int tv_sec, unsigned int tv_usec, void *user_data);
+;; void (*page_flip_handler)(int fd, unsigned int sequence, unsigned int tv_sec, unsigned int tv_usec, void *user_data);
+(defcstruct event-context
+  (version :int)
+  (vblank-handler :pointer) 
+  (page-flip-handler :pointer))
+
+(defcfun ("drmHandleEvent" handle-event) :int
+  (fd :int)
+  (event-context (:pointer (:struct event-context))))

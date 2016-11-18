@@ -20,4 +20,10 @@
    buffer-id
    mode-info
    connector-id
-   crtc))
+   crtc
+   mode-page-flip
+   handle-event
+   event-context
+   version
+   vblank-handler
+   page-flip-handler))
